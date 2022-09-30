@@ -1,0 +1,23 @@
+.button {
+  display: block;
+  margin: 25px auto 0;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.87;
+  align-items: center;
+  letter-spacing: 0.06em;
+  background: rgb(7, 70, 228);
+  color: rgb(255, 255, 255);
+  border-radius: 4px;
+  margin: 35px auto;
+  padding: 5px 32px;
+  border: 2px solid rgb(32, 150, 232);
+  border-radius: 5px;
+}
+  
+  .button:hover,
+  .button:focus {
+  cursor: pointer;
+  background: rgb(11, 132, 219);
+  box-shadow: 0 10px 20px rgb(229, 255, 0), 0 5px 5px rgb(219, 243, 4);
+  }
