@@ -16,7 +16,6 @@ export const galleryApi = async (query, page) => {
         webformatURL,
       };
     });
-    console.log(gallery);
     return gallery;
   } catch (error) {
     console.log(error.message);
