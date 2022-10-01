@@ -2,7 +2,7 @@ import { useState,useEffect } from "react";
 import { ToastContainer,toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import {galleryApi} from "../helpers/galleryAPI"
+import { galleryApi } from "../helpers/galleryAPI"
 import { Loader } from "./Loader/Loader";
 import { Modal } from "./Modal/Modal";
 import { ImageGallery } from "./ImageGallery/ImageGallery";
@@ -22,14 +22,14 @@ export const  App = () => {
     if(setPage !== page || setQueryInput !== queryInput){
       itemImgGallery(queryInput,page)
     }
-  },[page,queryInput])
+  },[queryInput,page])
 
  const onOpenModal = (img) => {
-      setModalGallery(img)
+    setModalGallery(img)
   };
 
  const onModalClose = () => {
-      setModalGallery("")
+    setModalGallery("")
   };
 
  const formSubmit = (queryInput) => {
@@ -58,18 +58,18 @@ export const  App = () => {
       setIsLoading(false);
     };
   };
+
  const onLoadMore = () => {
   setPage(prevPage => prevPage + 1)
   }
   
-
     return  (
       <>
-    <Searchbar  onSubmit = {formSubmit} isLoading={isLoading}/>
+    <Searchbar  onSubmit={formSubmit} isLoading={isLoading}/>
     {gallery.length > 0 && <ImageGallery image={gallery} onClick={onOpenModal}/>}
     {isLoading && <Loader/>}
     {gallery.length > 0 && <Button onLoadMore= {onLoadMore} isLoading={isLoading}/>}
-    {modalGallery && <Modal showModal = {onModalClose} url ={modalGallery}/>} 
+    {modalGallery && <Modal showModal={onModalClose} url={modalGallery}/>} 
     <ToastContainer
         position="top-right"
         autoClose={3000}

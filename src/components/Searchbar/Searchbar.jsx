@@ -1,39 +1,32 @@
-import { Component } from 'react';
+import { useState} from 'react';
 import { FcSearch } from "react-icons/fc";
 import s from "./Searchbar.module.css"
 import PropTypes from 'prop-types';
 
-export class Searchbar extends Component {
-    state = {
-        queryInput: "",
-    }
+export const Searchbar = ({isLoading,onSubmit}) => {
+    const [queryInput,setQueryInput] = useState("");
 
-    changInput = (event) => {
-        this.setState({ 
-            queryInput: event.target.value,
-        });
+    const changInput = (event) => {
+        setQueryInput(event.target.value)
     }
-
-    reset = () => {
-        this.setState({ queryInput: "" });
+ 
+    const reset = () => {
+        setQueryInput("")
       };
 
-    render() {
-    const {queryInput} = this.state
-    const { isLoading,onSubmit } = this.props;
     return (
         <header className={s.searchbar}>
             <form className={s.searchForm} onSubmit={(event) => {
                 event.preventDefault()
                 onSubmit(queryInput)
-                this.reset()
+                reset()
             }}>
                 <input
                 className={s.searchFormInput}
                 type="text"
                 value={queryInput}
-                onChange = {this.changInput}
-                autoFocus/* ={true} */
+                onChange = {changInput}
+                autoFocus
                 placeholder="Search images and photos"
                 />
                  <button type="submit" 
@@ -44,8 +37,6 @@ export class Searchbar extends Component {
             </form>
         </header>
     )
-
-}
 }
 Searchbar.propTypes = {
     onSubmit: PropTypes.func.isRequired,
