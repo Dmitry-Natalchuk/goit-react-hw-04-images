@@ -9,17 +9,13 @@ export const Searchbar = ({isLoading,onSubmit}) => {
     const changInput = (event) => {
         setQueryInput(event.target.value)
     }
- 
-    const reset = () => {
-        setQueryInput("")
-      };
 
     return (
         <header className={s.searchbar}>
             <form className={s.searchForm} onSubmit={(event) => {
                 event.preventDefault()
                 onSubmit(queryInput)
-                reset()
+                setQueryInput("")
             }}>
                 <input
                 className={s.searchFormInput}

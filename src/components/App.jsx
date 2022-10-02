@@ -17,28 +17,28 @@ export const  App = () => {
   const [modalGallery,setModalGallery] = useState("")
   const [isLoading,setIsLoading] = useState(false)
 
-
-  useEffect(() => {
-    if(setPage !== page || setQueryInput !== queryInput){
-      itemImgGallery(queryInput,page)
-    }
-  },[queryInput,page])
+   useEffect(() => {
+    if(!queryInput) {
+     return
+    } 
+    itemImgGallery(queryInput,page)
+  },[queryInput,page])  
 
  const onOpenModal = (img) => {
-    setModalGallery(img)
+  setModalGallery(img)
   };
 
  const onModalClose = () => {
-    setModalGallery("")
+  setModalGallery("")
   };
 
- const formSubmit = (queryInput) => {
+ const formSubmit = queryInput => {
     if (queryInput.trim().length === 0) {
       return toast.warn('The search string cannot be empty. Please specify your search query.')
     }
-    setQueryInput("");
-    setPage(1);
-    setGallery([]);
+    setQueryInput(queryInput)
+    setPage(1)
+    setGallery([])
     }
 
  const itemImgGallery = async (query, page) => {
@@ -50,6 +50,7 @@ export const  App = () => {
       }
       setGallery(prevGallery => [...prevGallery, ...list]);
       setIsLoading(false);
+      return
       }
       catch(error) {
       console.log(error.message)
